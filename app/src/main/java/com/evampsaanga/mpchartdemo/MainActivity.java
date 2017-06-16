@@ -28,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
         BarChart barChart = (BarChart) findViewById(R.id.barChat);
         barChart.setRoundedBarRadius(30);
 
-        barChart.setGridBackgroundColor(Color.GRAY);
-
         XAxis xAxis = barChart.getXAxis();
+        xAxis.setAxisLineColor(Color.BLACK);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
             @Override
@@ -48,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
         barChart.setDrawGridBackground(false);
         barChart.setFitBars(true);
         barChart.setData(generateBarData());
-
+        barChart.setTouchEnabled(false);
+        //barChart.getBarData().setBarWidth(1f);
     }
 
     private BarData generateBarData() {
@@ -61,8 +61,15 @@ public class MainActivity extends AppCompatActivity {
         entries.add(new BarEntry(4f, 70f));
         entries.add(new BarEntry(5f, 60f));
         entries.add(new BarEntry(6f, 60f));
+        int[] colors = new int[]{Color.GREEN,
+                Color.YELLOW,
+                Color.GREEN,
+                Color.BLUE,
+                Color.WHITE,
+                Color.BLACK,
+                Color.CYAN};
         BarDataSet set = new BarDataSet(entries, "");
-
+        set.setColors(colors);
         return new BarData(set);
     }
 }
